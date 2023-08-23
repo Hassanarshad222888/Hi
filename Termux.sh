@@ -10,26 +10,14 @@ cd
            # install necessary packages
            pkg install clang wget git megatools cmake -y
            #cloning the github repository of alpaca.cpp                                                                                                       
-           git clone  https://github.com/antimatter15/alpaca.cpp
-           #enter alpaca.cpp folder
-           cd alpaca.cpp                                                                                                                                      
-           #start building alpaca.cpp (if you get an error try replacing make with cmake and see if that works)
+           git clone  https://github.com/ggerganov/llama.cpp.git
+           #enter llama.cpp folder
+           cd llama.cpp                                                                                                                                      
+           #start building llama.cpp (if you get an error try replacing make with cmake and see if that works)
            make
-           echo -e "enter 1 for Download"
+           echo -e "Enter 1 for Download Griffin 3B"
            read website
            #downloading the 3B Griffin model
            if [ $website -eq "1" ] 
 		then
-                wget https://huggingface.co/TheBloke/Griffin-3B-GGML/tree/main
-
-           fi
-           # making a shortcut script to launch alpaca easily with the word chat
-           cd /$PREFIX/bin
-           echo 'clear' > chat
-           echo 'cd' >> chat
-           echo 'cd alpaca.cpp' >> chat
-           echo './chat' >> chat
-           chmod +x chat
-    else    
-  echo "wrong input exiting"
-fi
+                wget https://huggingface.co/TheBloke/Griffin-3B-GGML/blob/main/griffin-3b.ggmlv3.q4_0.bin
