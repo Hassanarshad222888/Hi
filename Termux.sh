@@ -21,3 +21,8 @@ cd
            if [ $website -eq "1" ] 
 		then
                 wget https://huggingface.co/TheBloke/Griffin-3B-GGML/blob/main/griffin-3b.ggmlv3.q4_0.bin
+
+           fi
+              else    
+  echo "wrong input exiting"
+fi
