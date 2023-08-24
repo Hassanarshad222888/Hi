@@ -1,28 +1,41 @@
 cd
-        echo "1- Install Griffin 3B"
+echo "Welcome please choose what you want to do:"
+echo "1-install a model"
+echo "2-uninstall a model"
+echo "h-help"
+echo "enter anything else to exit"
+read choice
+
+if [[ $choice -eq "1" ]]
+	 then
+        echo "please select a model to install:"
+        echo "1-Alpaca-7B"
         read choice
         if [[ $choice -eq "1" ]] 
 	  then
            cd
-           termux-setup-storage
-           # update packages
-           pkg update && pkg upgrade -y                                                                                 
-           # install necessary packages
-           pkg install clang wget git megatools cmake -y
            #cloning the github repository of alpaca.cpp                                                                                                       
-           git clone  https://github.com/ggerganov/llama.cpp.git
-           #enter llama.cpp folder
-           cd llama.cpp                                                                                                                                      
-           #start building llama.cpp (if you get an error try replacing make with cmake and see if that works)
+           git clone  https://github.com/antimatter15/alpaca.cpp
+           #enter alpaca.cpp folder
+           cd alpaca.cpp                                                                                                                                      
+           #start building alpaca.cpp (if you get an error try replqcing make with cmake and see if that works)
            make
-           echo -e "Enter 1 for Download Griffin 3B"
+           echo -e  "\e[32m select whether to use hugginface or mega(recommended) to download the model?"
+           echo -e "enter 1 for Download"
            read website
-           #downloading the 3B Griffin model
+           #downloading the 7B alpaca model
            if [ $website -eq "1" ] 
 		then
-                wget https://huggingface.co/TheBloke/Griffin-3B-GGML/blob/main/griffin-3b.ggmlv3.q4_0.bin
-
+                wget https://huggingface.co/Sosaka/Alpaca-native-4bit-ggml/resolve/main/ggml-alpaca-7b-q4.bin
            fi
-              else    
+           # making a shortcut script to launch alpaca easily with the word chat
+           cd /$PREFIX/bin
+           echo 'clear' > chat
+           echo 'cd' >> chat
+           echo 'cd alpaca.cpp' >> chat
+           echo './chat' >> chat
+           chmod +x chat
+        
+else    
   echo "wrong input exiting"
 fi
